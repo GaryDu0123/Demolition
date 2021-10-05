@@ -37,3 +37,8 @@ application {
     // Define the main class for the application
     mainClassName = 'demolition.App'
 }
+
+//person add to solve garbled of gbk character
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
