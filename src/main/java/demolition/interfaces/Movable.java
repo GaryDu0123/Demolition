@@ -13,25 +13,21 @@ public interface Movable {
         switch (direction) {
             case DIRECTION_UP:
                 if (role.getY() - 1 >= 0 && database[role.getY() - 1][role.getX()] instanceof EmptyTile) {
-//                    role.setY(role.getY() - 1);
                     return true;
                 }
                 break;
             case DIRECTION_DOWN:
                 if (role.getY() + 1 < database.length && database[role.getY() + 1][role.getX()] instanceof EmptyTile) {
-//                    role.setY(role.getY() + 1);
                     return true;
                 }
                 break;
             case DIRECTION_LEFT:
                 if (role.getX() - 1 >= 0 && database[role.getY()][role.getX() - 1] instanceof EmptyTile) {
-//                    role.setX(role.getX() - 1);
                     return true;
                 }
                 break;
             case DIRECTION_RIGHT:
                 if (role.getX() + 1 < database[0].length && database[role.getY()][role.getX() + 1] instanceof EmptyTile) {
-//                    role.setX(role.getX() + 1);
                     return true;
                 }
                 break;

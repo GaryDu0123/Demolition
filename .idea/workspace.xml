@@ -5,18 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 hmmmmmm">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Test/changeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Test/circleLinklist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test/JSONTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/JSONTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -90,20 +88,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="demolition.App" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="demolition.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.SampleTest.simpleTest">
     <configuration name="JSONTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test.JSONTest" />
       <module name="Demolition.main" />
@@ -130,11 +115,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="changeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test.changeTest" />
+      <module name="Demolition.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SampleTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;demolition.SampleTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SampleTest.simpleTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;demolition.SampleTest.simpleTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SampleTest.simpleTest" />
+        <item itemvalue="Gradle.SampleTest" />
+        <item itemvalue="Application.changeTest" />
         <item itemvalue="Application.SolidWall" />
         <item itemvalue="Application.JSONTest" />
-        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +195,7 @@
       <workItem from="1633445502525" duration="3478000" />
       <workItem from="1633449025797" duration="2344000" />
       <workItem from="1633451455896" duration="102000" />
-      <workItem from="1633486781152" duration="23760000" />
+      <workItem from="1633486781152" duration="36409000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -169,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633451549367</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hello Assignment2 hmmmmmm">
+      <created>1633523890037</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1633523890037</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

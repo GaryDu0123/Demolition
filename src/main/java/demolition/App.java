@@ -15,22 +15,22 @@ import java.util.Scanner;
 
 public class App extends PApplet {
 
-    private PImage[] playerDownImg = new PImage[4];
-    private PImage[] playerLeftImg = new PImage[4];
-    private PImage[] playerRightImg = new PImage[4];
-    private PImage[] playerUpImg = new PImage[4];
+    private final PImage[] playerDownImg = new PImage[4];
+    private final PImage[] playerLeftImg = new PImage[4];
+    private final PImage[] playerRightImg = new PImage[4];
+    private final PImage[] playerUpImg = new PImage[4];
 
-    private PImage[] redEnemyDownImg = new PImage[4];
-    private PImage[] redEnemyUpImg = new PImage[4];
-    private PImage[] redEnemyLeftImg = new PImage[4];
-    private PImage[] redEnemyRightImg = new PImage[4];
+    private final PImage[] redEnemyDownImg = new PImage[4];
+    private final PImage[] redEnemyUpImg = new PImage[4];
+    private final PImage[] redEnemyLeftImg = new PImage[4];
+    private final PImage[] redEnemyRightImg = new PImage[4];
 
-    private PImage[] yellowEnemyDownImg = new PImage[4];
-    private PImage[] yellowEnemyUpImg = new PImage[4];
-    private PImage[] yellowEnemyLeftImg = new PImage[4];
-    private PImage[] yellowEnemyRightImg = new PImage[4];
+    private final PImage[] yellowEnemyDownImg = new PImage[4];
+    private final PImage[] yellowEnemyUpImg = new PImage[4];
+    private final PImage[] yellowEnemyLeftImg = new PImage[4];
+    private final PImage[] yellowEnemyRightImg = new PImage[4];
 
-    private PImage[] bombImg = new PImage[8];
+    private final PImage[] bombImg = new PImage[8];
 
     private PImage explosionCenterImg;
     private PImage explosionEndBottomImg;
@@ -54,7 +54,7 @@ public class App extends PApplet {
     private final Tile[][] mapDatabase = new Tile[13][15];
     private Player player;
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private static long tick = 0L;
+    private static long frame = 0L;
     public static final int WIDTH = 480;
     public static final int HEIGHT = 480;
     public static final int FPS = 60;
@@ -71,7 +71,7 @@ public class App extends PApplet {
         frameRate(FPS); // 游戏刷新帧率
         // load 图片区
 
-        // 玩家正面
+        // 玩家
         for (int i = 0; i < playerDownImg.length; i++) {
             playerDownImg[i] = this.loadImage(String.format("src/main/resources/player/player%d.png", i + 1));
         }
@@ -88,6 +88,7 @@ public class App extends PApplet {
             playerRightImg[i] = this.loadImage(String.format("src/main/resources/player/player_right%d.png", i + 1));
         }
 
+        // 红色敌人
         for (int i = 0; i < redEnemyDownImg.length; i++) {
             redEnemyDownImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_down%d.png", i + 1));
         }
@@ -104,6 +105,7 @@ public class App extends PApplet {
             redEnemyRightImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_right%d.png", i + 1));
         }
 
+        // 黄色敌人
         for (int i = 0; i < yellowEnemyDownImg.length; i++) {
             yellowEnemyDownImg[i] = this.loadImage(String.format("src/main/resources/yellow_enemy/yellow_down%d.png", i + 1));
         }
@@ -123,6 +125,8 @@ public class App extends PApplet {
         for (int i = 0; i < bombImg.length; i++) {
             bombImg[i] = this.loadImage(String.format("src/main/resources/bomb/bomb%d.png", i + 1));
         }
+
+        // 爆炸画面
         explosionCenterImg = this.loadImage("src/main/resources/explosion/centre.png");
         explosionEndLeftImg = this.loadImage("src/main/resources/explosion/end_left.png");
         explosionHorizontalImg = this.loadImage("src/main/resources/explosion/horizontal.png");
@@ -176,20 +180,23 @@ public class App extends PApplet {
                     if (c == 'W') {
                         tile = new SolidWall(columnIndex, rowIndex, solidWall);
                     } else if (c == 'B') {
-                        tile = new BrokenWall(columnIndex, rowIndex,brokenWell);
+                        tile = new BrokenWall(columnIndex, rowIndex, brokenWell);
                     } else if (c == ' ') {
                         tile = new EmptyTile(columnIndex, rowIndex, empty);
                     } else if (c == 'G') {
                         tile = new GoalTile(columnIndex, rowIndex, goal);
-                    } else if (c == 'R'){
+                    } else if (c == 'R') {
                         tile = new EmptyTile(columnIndex, rowIndex, empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, redEnemyDownImg[0], "R"));
-                    } else if (c == 'Y'){
+                        enemies.add(new Enemy(columnIndex, rowIndex, redEnemyDownImg, redEnemyUpImg,
+                                redEnemyLeftImg, redEnemyRightImg, "R", this));
+                    } else if (c == 'Y') {
                         tile = new EmptyTile(columnIndex, rowIndex, empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, yellowEnemyDownImg[0], "Y"));
-                    } else if (c == 'P'){
-                        tile = new EmptyTile(columnIndex, rowIndex,empty);
-                        player = new Player(columnIndex,rowIndex, playerDownImg[0], "P"); // todo 下一步初始化玩家
+                        enemies.add(new Enemy(columnIndex, rowIndex, yellowEnemyDownImg, yellowEnemyUpImg,
+                                yellowEnemyLeftImg, yellowEnemyRightImg, "Y", this));
+                    } else if (c == 'P') {
+                        tile = new EmptyTile(columnIndex, rowIndex, empty);
+                        player = new Player(columnIndex, rowIndex, playerDownImg, playerUpImg,
+                                playerLeftImg, playerRightImg, "P", this); // todo 下一步初始化玩家
                     } else {
                         System.err.printf("Unknown type %c in config file\n", c);
                         System.exit(-1);
@@ -205,7 +212,7 @@ public class App extends PApplet {
         }
     }
 
-    private void mapStaticGraphUpdate(Tile[][] mapDatabase){
+    private void mapStaticGraphUpdate(Tile[][] mapDatabase) {
         for (Tile[] tiles : mapDatabase) {
             for (Tile tile : tiles) {
                 image(tile.getImage(), 32 * tile.getX(), 64 + 32 * tile.getY());
@@ -217,7 +224,12 @@ public class App extends PApplet {
     public void draw() {
         background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
         mapStaticGraphUpdate(mapDatabase); // 显示当前地图状态
-        image(player.getImage(), player.getDisplayX(), player.getDisplayY()); // todo 人物测试
+        player.draw();
+        for (Enemy enemy : enemies) {
+            enemy.move(Direction.AUTO, mapDatabase);
+            enemy.draw();
+        }
+        frame++;
     }
 
     boolean actionComplete = true; // 为了只执行一次动作
