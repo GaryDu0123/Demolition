@@ -1,33 +1,34 @@
 package demolition.role;
 
+import demolition.enums.Direction;
+import demolition.interfaces.Movable;
+import demolition.tile.*;
 import processing.core.PImage;
 
-public class Player {
-//    private String color;
-    private static final String character = "P";
-    private int X;
-    private int Y;
-    PImage image;
+public class Player extends Role implements Movable {
 
-    public Player(int X, int Y, PImage image) {
-        this.X = X;
-        this.Y = Y;
-        this.image = image;
+    public Player(int X, int Y, PImage image, String character) {
+        super(X, Y, image, character);
     }
 
-    public String getCharacter() {
-        return character;
-    }
-
-    public int getX() {
-        return X;
-    }
-
-    public int getY() {
-        return Y;
-    }
-
-    public PImage getImage() {
-        return image;
+    @Override
+    public boolean move(Direction direction, Tile[][] database) {
+        if (moveValidityCheck(this, direction, database)) {
+            switch (direction) {
+                case DIRECTION_UP:
+                    setY(getY() - 1);
+                    return true;
+                case DIRECTION_DOWN:
+                    setY(getY() + 1);
+                    return true;
+                case DIRECTION_LEFT:
+                    setX(getX() - 1);
+                    return true;
+                case DIRECTION_RIGHT:
+                    setX(getX() + 1);
+                    return true;
+            }
+        }
+        return false;
     }
 }

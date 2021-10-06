@@ -4,7 +4,7 @@ import processing.core.PImage;
 
 public class BrokenWall extends Tile {
 
-
+    public final boolean isBlock = true;
     private final String character = "B";
 
     public BrokenWall(int X, int Y, PImage image) {

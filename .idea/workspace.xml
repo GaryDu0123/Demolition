@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 hmmmmmm">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test/JSONTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/JSONTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -79,7 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -152,6 +152,8 @@
       <workItem from="1633412808139" duration="24824000" />
       <workItem from="1633445502525" duration="3478000" />
       <workItem from="1633449025797" duration="2344000" />
+      <workItem from="1633451455896" duration="102000" />
+      <workItem from="1633486781152" duration="23760000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -160,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633429733118</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Hello Assignment2 hmmmmmm">
+      <created>1633451549367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1633451549367</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
