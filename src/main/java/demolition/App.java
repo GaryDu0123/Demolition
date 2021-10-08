@@ -1,59 +1,25 @@
 package demolition;
 
+import demolition.battle.Bomb;
+import demolition.core.Resource;
 import demolition.enums.Direction;
 import demolition.role.Enemy;
 import demolition.role.Player;
 import demolition.tile.*;
 import processing.core.PApplet;
-import processing.core.PImage;
-import processing.data.JSONArray;
-import processing.data.JSONObject;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class App extends PApplet {
-
-    private final PImage[] playerDownImg = new PImage[4];
-    private final PImage[] playerLeftImg = new PImage[4];
-    private final PImage[] playerRightImg = new PImage[4];
-    private final PImage[] playerUpImg = new PImage[4];
-
-    private final PImage[] redEnemyDownImg = new PImage[4];
-    private final PImage[] redEnemyUpImg = new PImage[4];
-    private final PImage[] redEnemyLeftImg = new PImage[4];
-    private final PImage[] redEnemyRightImg = new PImage[4];
-
-    private final PImage[] yellowEnemyDownImg = new PImage[4];
-    private final PImage[] yellowEnemyUpImg = new PImage[4];
-    private final PImage[] yellowEnemyLeftImg = new PImage[4];
-    private final PImage[] yellowEnemyRightImg = new PImage[4];
-
-    private final PImage[] bombImg = new PImage[8];
-
-    private PImage explosionCenterImg;
-    private PImage explosionEndBottomImg;
-    private PImage explosionEndTopImg;
-    private PImage explosionEndLeftImg;
-    private PImage explosionEndRightImg;
-    private PImage explosionHorizontalImg;
-    private PImage explosionVerticalImg;
-
-    private PImage playerIcon;
-    private PImage clockIcon;
-    private PImage goal;
-    private PImage solidWall;
-    private PImage brokenWell;
-    private PImage empty;
-
-
-    private int level = 0; // 初步思路是根据关卡load, 关卡改变去调用update方法
-    private int lives;
-    private final ArrayList<String> levelPathList = new ArrayList<>();
+    private final Resource resource = new Resource();
     private final Tile[][] mapDatabase = new Tile[13][15];
+    private int level = 0; // 初步思路是根据关卡load, 关卡改变去调用update方法
     private Player player;
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private final ArrayList<Enemy> enemies = new ArrayList<>();
+    private final ArrayList<Bomb> bombs = new ArrayList<>();
+
     private static long frame = 0L;
     public static final int WIDTH = 480;
     public static final int HEIGHT = 480;
@@ -69,105 +35,14 @@ public class App extends PApplet {
 
     public void setup() {
         frameRate(FPS); // 游戏刷新帧率
-        // load 图片区
-
-        // 玩家
-        for (int i = 0; i < playerDownImg.length; i++) {
-            playerDownImg[i] = this.loadImage(String.format("src/main/resources/player/player%d.png", i + 1));
-        }
-
-        for (int i = 0; i < playerUpImg.length; i++) {
-            playerUpImg[i] = this.loadImage(String.format("src/main/resources/player/player_up%d.png", i + 1));
-        }
-
-        for (int i = 0; i < playerLeftImg.length; i++) {
-            playerLeftImg[i] = this.loadImage(String.format("src/main/resources/player/player_left%d.png", i + 1));
-        }
-
-        for (int i = 0; i < playerRightImg.length; i++) {
-            playerRightImg[i] = this.loadImage(String.format("src/main/resources/player/player_right%d.png", i + 1));
-        }
-
-        // 红色敌人
-        for (int i = 0; i < redEnemyDownImg.length; i++) {
-            redEnemyDownImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_down%d.png", i + 1));
-        }
-
-        for (int i = 0; i < redEnemyUpImg.length; i++) {
-            redEnemyUpImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_up%d.png", i + 1));
-        }
-
-        for (int i = 0; i < redEnemyLeftImg.length; i++) {
-            redEnemyLeftImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_left%d.png", i + 1));
-        }
-
-        for (int i = 0; i < redEnemyRightImg.length; i++) {
-            redEnemyRightImg[i] = this.loadImage(String.format("src/main/resources/red_enemy/red_right%d.png", i + 1));
-        }
-
-        // 黄色敌人
-        for (int i = 0; i < yellowEnemyDownImg.length; i++) {
-            yellowEnemyDownImg[i] = this.loadImage(String.format("src/main/resources/yellow_enemy/yellow_down%d.png", i + 1));
-        }
-
-        for (int i = 0; i < yellowEnemyUpImg.length; i++) {
-            yellowEnemyUpImg[i] = this.loadImage(String.format("src/main/resources/yellow_enemy/yellow_up%d.png", i + 1));
-        }
-
-        for (int i = 0; i < yellowEnemyLeftImg.length; i++) {
-            yellowEnemyLeftImg[i] = this.loadImage(String.format("src/main/resources/yellow_enemy/yellow_left%d.png", i + 1));
-        }
-
-        for (int i = 0; i < yellowEnemyRightImg.length; i++) {
-            yellowEnemyRightImg[i] = this.loadImage(String.format("src/main/resources/yellow_enemy/yellow_right%d.png", i + 1));
-        }
-
-        for (int i = 0; i < bombImg.length; i++) {
-            bombImg[i] = this.loadImage(String.format("src/main/resources/bomb/bomb%d.png", i + 1));
-        }
-
-        // 爆炸画面
-        explosionCenterImg = this.loadImage("src/main/resources/explosion/centre.png");
-        explosionEndLeftImg = this.loadImage("src/main/resources/explosion/end_left.png");
-        explosionHorizontalImg = this.loadImage("src/main/resources/explosion/horizontal.png");
-        explosionEndBottomImg = this.loadImage("src/main/resources/explosion/end_bottom.png");
-        explosionEndTopImg = this.loadImage("src/main/resources/explosion/end_top.png");
-        explosionEndRightImg = this.loadImage("src/main/resources/explosion/end_right.png");
-        explosionVerticalImg = this.loadImage("src/main/resources/explosion/vertical.png");
-
-        clockIcon = this.loadImage("src/main/resources/icons/clock.png");
-        playerIcon = this.loadImage("src/main/resources/icons/player.png");
-        goal = this.loadImage("src/main/resources/goal/goal.png");
-        solidWall = this.loadImage("src/main/resources/wall/solid.png");
-        brokenWell = this.loadImage("src/main/resources/broken/broken.png");
-        empty = this.loadImage("src/main/resources/empty/empty.png");
-
-        JSONReader(); // 初始化JSON库 影响各文件的路径 生命数,
+        resource.setup(this);
         mapStaticRecourseInitUpdate(level); // 第一次初始化数据库为第一个地图,后面只有level更新的时候才生效
-
-        // Load images during setup
     }
 
-    private void JSONReader() {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("config.json"))) {
-            String text;
-            while ((text = bufferedReader.readLine()) != null) {
-                stringBuilder.append(text);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        lives = (int) JSONObject.parse(stringBuilder.toString()).get("lives");
-        JSONArray levels = (JSONArray) JSONObject.parse(stringBuilder.toString()).get("levels");
-        for (int i = 0; i < levels.size(); i++) {
-            levelPathList.add((String) ((JSONObject) levels.get(i)).get("path"));
-        }
-    }
 
     private void mapStaticRecourseInitUpdate(int level) {
         int rowIndex = 0;
-        try (Scanner fileReader = new Scanner(new File(levelPathList.get(level)))) {
+        try (Scanner fileReader = new Scanner(new File(Resource.levelPathList.get(level)))) {
             while (fileReader.hasNextLine()) {
                 String config = fileReader.nextLine();
                 if (config.length() != 15) {
@@ -178,25 +53,25 @@ public class App extends PApplet {
                 for (char c : config.toCharArray()) {
                     Tile tile = null;
                     if (c == 'W') {
-                        tile = new SolidWall(columnIndex, rowIndex, solidWall);
+                        tile = new SolidWall(columnIndex, rowIndex, Resource.solidWall);
                     } else if (c == 'B') {
-                        tile = new BrokenWall(columnIndex, rowIndex, brokenWell);
+                        tile = new BrokenWall(columnIndex, rowIndex, Resource.brokenWell);
                     } else if (c == ' ') {
-                        tile = new EmptyTile(columnIndex, rowIndex, empty);
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
                     } else if (c == 'G') {
-                        tile = new GoalTile(columnIndex, rowIndex, goal);
+                        tile = new GoalTile(columnIndex, rowIndex, Resource.goal);
                     } else if (c == 'R') {
-                        tile = new EmptyTile(columnIndex, rowIndex, empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, redEnemyDownImg, redEnemyUpImg,
-                                redEnemyLeftImg, redEnemyRightImg, "R", this));
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.redEnemyDownImg, Resource.redEnemyUpImg,
+                                Resource.redEnemyLeftImg, Resource.redEnemyRightImg, "R", this));
                     } else if (c == 'Y') {
-                        tile = new EmptyTile(columnIndex, rowIndex, empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, yellowEnemyDownImg, yellowEnemyUpImg,
-                                yellowEnemyLeftImg, yellowEnemyRightImg, "Y", this));
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.yellowEnemyDownImg, Resource.yellowEnemyUpImg,
+                                Resource.yellowEnemyLeftImg, Resource.yellowEnemyRightImg, "Y", this));
                     } else if (c == 'P') {
-                        tile = new EmptyTile(columnIndex, rowIndex, empty);
-                        player = new Player(columnIndex, rowIndex, playerDownImg, playerUpImg,
-                                playerLeftImg, playerRightImg, "P", this); // todo 下一步初始化玩家
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        player = new Player(columnIndex, rowIndex, Resource.playerDownImg, Resource.playerUpImg,
+                                Resource.playerLeftImg, Resource.playerRightImg, "P", this, Resource.lives); // todo 下一步初始化玩家
                     } else {
                         System.err.printf("Unknown type %c in config file\n", c);
                         System.exit(-1);
@@ -220,14 +95,25 @@ public class App extends PApplet {
         }
     }
 
-
+    @Override
     public void draw() {
         background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
         mapStaticGraphUpdate(mapDatabase); // 显示当前地图状态
         player.draw();
         for (Enemy enemy : enemies) {
-            enemy.move(Direction.AUTO, mapDatabase);
+            enemy.move(Direction.AUTO, mapDatabase); // Direction here doesn't matter
             enemy.draw();
+        }
+
+        ArrayList<Bomb> bombRemoveList = new ArrayList<>();
+
+        for (Bomb bomb : bombs) {
+            Bomb removeObj = bomb.draw();
+            if (removeObj != null) bombRemoveList.add(bomb);
+        }
+        for (Bomb bomb : bombRemoveList) {
+            System.out.format("\33[0;32mBomb Message: %s removed\33[0m\n", Integer.toHexString(bomb.hashCode())); // todo debug message
+            bombs.remove(bomb);
         }
         frame++;
     }
@@ -240,7 +126,7 @@ public class App extends PApplet {
         if (actionComplete) {
             boolean status;
             switch (keyCode) {
-                case LEFT:
+                case LEFT: // Constant define in processing.core.PConstants
                     status = player.move(Direction.DIRECTION_LEFT, mapDatabase);
                     actionComplete = false;
                     System.err.println("Key Press LEFT " + status);
@@ -259,6 +145,11 @@ public class App extends PApplet {
                     status = player.move(Direction.DIRECTION_DOWN, mapDatabase);
                     actionComplete = false;
                     System.err.println("Key Press DOWN " + status);
+                    break;
+                case 32: // space
+                    Bomb bomb = new Bomb(player.getX(), player.getY(), Resource.bombImg, this, bombs);
+                    bombs.add(bomb);
+                    System.err.println("Key Press SPACE");
                     break;
             }
         }

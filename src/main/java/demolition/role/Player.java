@@ -7,11 +7,13 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Player extends Role implements Movable {
+    private int lives;
 
     public Player(int X, int Y, PImage[] downImg, PImage[] upImg,
-                  PImage[] leftImg, PImage[] rightImg, String character, PApplet app) {
+                  PImage[] leftImg, PImage[] rightImg, String character, PApplet app, int lives) {
         super(X, Y, downImg, upImg, leftImg, rightImg, character, app);
     }
+
 
     @Override
     public boolean move(Direction direction, Tile[][] database) {

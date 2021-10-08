@@ -1,19 +1,17 @@
 package demolition.role;
 
+import demolition.core.GameObject;
 import demolition.enums.Direction;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Role {
+public class Role extends GameObject {
     public PApplet app;
     private final PImage[] downImg;
-    private PImage[] upImg;
-    private PImage[] leftImg;
-    private PImage[] rightImg;
-    private int X;
-    private int Y;
+    private final PImage[] upImg;
+    private final PImage[] leftImg;
+    private final PImage[] rightImg;
     private final String character;
-
 
     private int counter = 0;
     private int actionStatus = 0;
@@ -22,8 +20,7 @@ public class Role {
 
     public Role(int X, int Y, PImage[] downImg, PImage[] upImg,
                 PImage[] leftImg, PImage[] rightImg, String character, PApplet app) {
-        this.X = X;
-        this.Y = Y;
+        super(X,Y);
         this.downImg = downImg;
         this.upImg = upImg;
         this.leftImg = leftImg;
@@ -32,21 +29,8 @@ public class Role {
         this.app = app;
     }
 
-
-    public void setX(int x) {
-        X = x;
-    }
-
-    public void setY(int y) {
-        Y = y;
-    }
-
-    public int getX() {
-        return X;
-    }
-
-    public int getY() {
-        return Y;
+    public PApplet getApp() {
+        return app;
     }
 
     public String getCharacter() {
@@ -68,12 +52,13 @@ public class Role {
     public void setPreDirection(Direction preDirection) {
         this.preDirection = preDirection;
     }
+
     public int getDisplayX() {
-        return X * 32;
+        return getX() * 32;
     }
 
     public int getDisplayY() {
-        return Y * 32 - 16 + 64;
+        return getY() * 32 - 16 + 64;
     }
 
     public void draw(){
@@ -93,13 +78,16 @@ public class Role {
             case DIRECTION_RIGHT:
                 image = rightImg;
                 break;
+            default:
+                return;
         }
-        app.image(image[actionStatus], getDisplayX(), getDisplayY());
-//        System.err.println(actionStatus);
-        if (counter % 12 == 0){
+        getApp().image(image[actionStatus], getDisplayX(), getDisplayY());
+
+        if (counter % 12 == 0){ // 0.2 * app.frameRate
             actionStatus ++;
             counter = 0;
         }
+
         counter ++;
     }
 }
