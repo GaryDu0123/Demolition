@@ -1,18 +1,18 @@
 package demolition.role;
 
-import demolition.core.GameObject;
+import demolition.core.DynamicObject;
 import demolition.enums.Direction;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Role extends GameObject {
+public class Role extends DynamicObject{
     public PApplet app;
     private final PImage[] downImg;
     private final PImage[] upImg;
     private final PImage[] leftImg;
     private final PImage[] rightImg;
     private final String character;
-
+    private Boolean isDie = false;
     private int counter = 0;
     private int actionStatus = 0;
     private Direction preDirection = Direction.DIRECTION_DOWN;
@@ -53,10 +53,12 @@ public class Role extends GameObject {
         this.preDirection = preDirection;
     }
 
+    @Override
     public int getDisplayX() {
         return getX() * 32;
     }
 
+    @Override
     public int getDisplayY() {
         return getY() * 32 - 16 + 64;
     }
@@ -64,7 +66,7 @@ public class Role extends GameObject {
     public void draw(){
         if (actionStatus == 4)
             actionStatus = 0;
-        PImage[] image = null;
+        PImage[] image;
         switch (preDirection){
             case DIRECTION_DOWN:
                 image = downImg;
@@ -87,7 +89,7 @@ public class Role extends GameObject {
             actionStatus ++;
             counter = 0;
         }
-
         counter ++;
     }
+
 }

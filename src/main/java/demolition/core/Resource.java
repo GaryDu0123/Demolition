@@ -1,9 +1,15 @@
 package demolition.core;
 
+import demolition.role.Enemy;
+import demolition.role.Player;
+import demolition.tile.*;
 import demolition.util.JSONReader;
 import processing.core.PApplet;
 import processing.core.PImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Resource {
     public static final PImage[] playerDownImg = new PImage[4];
@@ -42,6 +48,10 @@ public class Resource {
     public static ArrayList<String> levelPathList;
 
     private final JSONReader jsonReader = new JSONReader("config.json");// 初始化JSON库 影响各文件的路径 生命数,
+
+    public static final Tile[][] mapDatabase = new Tile[13][15];
+    public static Player player;
+    public static final ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Resource(){
     }
@@ -124,7 +134,52 @@ public class Resource {
         lives = jsonReader.getLives();
         levelPathList = jsonReader.getLevelPathList();
     }
-    
-    
+
+    public void mapStaticRecourseInitUpdate(int level, PApplet app) {
+        int rowIndex = 0;
+        try (Scanner fileReader = new Scanner(new File(Resource.levelPathList.get(level)))) {
+            while (fileReader.hasNextLine()) {
+                String config = fileReader.nextLine();
+                if (config.length() != 15) {
+                    System.err.println("Config File Bad Format!");
+                    System.exit(-1);
+                }
+                int columnIndex = 0;
+                for (char c : config.toCharArray()) {
+                    Tile tile = null;
+                    if (c == 'W') {
+                        tile = new SolidWall(columnIndex, rowIndex, Resource.solidWall);
+                    } else if (c == 'B') {
+                        tile = new BrokenWall(columnIndex, rowIndex, Resource.brokenWell);
+                    } else if (c == ' ') {
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                    } else if (c == 'G') {
+                        tile = new GoalTile(columnIndex, rowIndex, Resource.goal);
+                    } else if (c == 'R') {
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.redEnemyDownImg, Resource.redEnemyUpImg,
+                                Resource.redEnemyLeftImg, Resource.redEnemyRightImg, "R", app));
+                    } else if (c == 'Y') {
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.yellowEnemyDownImg, Resource.yellowEnemyUpImg,
+                                Resource.yellowEnemyLeftImg, Resource.yellowEnemyRightImg, "Y", app));
+                    } else if (c == 'P') {
+                        tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
+                        player = new Player(columnIndex, rowIndex, Resource.playerDownImg, Resource.playerUpImg,
+                                Resource.playerLeftImg, Resource.playerRightImg, "P", app, Resource.lives); // todo 下一步初始化玩家
+                    } else {
+                        System.err.printf("Unknown type %c in config file\n", c);
+                        System.exit(-1);
+                    }
+                    mapDatabase[rowIndex][columnIndex] = tile;
+                    columnIndex++;
+                }
+                rowIndex++;
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Config file not found");
+            System.exit(-1);
+        }
+    }
     
 }

@@ -4,12 +4,13 @@ import processing.core.PImage;
 
 public class SolidWall extends Tile {
     public final boolean isBlock = true;
-    private final String character = "W";
+    public static final String character = "W";
 
     public SolidWall(int X, int Y, PImage image) {
         super(X, Y, image);
     }
 
+    @Override
     public String getCharacter() {
         return character;
     }

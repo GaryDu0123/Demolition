@@ -1,12 +1,12 @@
 package demolition.role;
 
+
 import demolition.enums.Direction;
-import demolition.interfaces.Movable;
 import demolition.tile.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Player extends Role implements Movable {
+public class Player extends Role implements Movable{
     private int lives;
 
     public Player(int X, int Y, PImage[] downImg, PImage[] upImg,

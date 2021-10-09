@@ -1,7 +1,8 @@
 package demolition.role;
 
+
+import demolition.core.DynamicRemovable;
 import demolition.enums.Direction;
-import demolition.interfaces.Movable;
 import demolition.tile.Tile;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Enemy extends Role implements Movable {
+
+public class Enemy extends Role implements Movable, DynamicRemovable {
     private static final ArrayList<Direction> clockwiseDirection = new ArrayList<>(Arrays.asList(Direction.DIRECTION_UP,
             Direction.DIRECTION_RIGHT, Direction.DIRECTION_DOWN, Direction.DIRECTION_LEFT));
     private int counter = 0;
@@ -42,7 +44,7 @@ public class Enemy extends Role implements Movable {
             } else {
                 nextMoveDirection = getPreDirection();
             }
-            System.out.format("\33[0;31mRED Enemy Message:    %s\33[0m\n", nextMoveDirection); // todo debug message
+//            System.out.format("\33[0;31mRED Enemy Message:    %s\33[0m\n", nextMoveDirection); // todo debug message
         } else if ("Y".equals(getCharacter())){
             int index = clockwiseDirection.indexOf(getPreDirection());
             int count = 0;
@@ -50,7 +52,7 @@ public class Enemy extends Role implements Movable {
                 if (index == 4) index = 0;
                 if (moveValidityCheck(this, clockwiseDirection.get(index), database)){
                     nextMoveDirection = clockwiseDirection.get(index);
-                    System.out.format("\33[0;33mYELLOW Enemy Message: %s\33[0m\n", nextMoveDirection); // todo debug message
+//                    System.out.format("\33[0;33mYELLOW Enemy Message: %s\33[0m\n", nextMoveDirection); // todo debug message
                     break;
                 }
                 index++;
@@ -80,6 +82,11 @@ public class Enemy extends Role implements Movable {
                 setX(getX() + 1);
                 return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean isNeedRemove() {
         return false;
     }
 }

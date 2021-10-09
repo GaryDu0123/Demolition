@@ -5,22 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 hmmmmmm">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Test/moveTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Test/randomTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/GameObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/explosionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/util/JSONReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Removable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test/circleLinklist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test/circleLinklist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Movable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/explosionTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +103,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.explosionTest">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demolition.App" />
       <module name="Demolition.main" />
@@ -198,6 +199,8 @@
       <workItem from="1633579401770" duration="10999000" />
       <workItem from="1633675603175" duration="70000" />
       <workItem from="1633682681922" duration="29758000" />
+      <workItem from="1633719171569" duration="117000" />
+      <workItem from="1633752791069" duration="21319000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -227,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633537602827</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Hello Assignment2 hmmmmmm">
+      <created>1633719206528</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1633719206528</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
