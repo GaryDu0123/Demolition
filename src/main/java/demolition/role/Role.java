@@ -1,18 +1,18 @@
 package demolition.role;
 
 import demolition.core.DynamicObject;
+import demolition.core.Resource;
 import demolition.enums.Direction;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Role extends DynamicObject{
+public abstract class Role extends DynamicObject{
     public PApplet app;
     private final PImage[] downImg;
     private final PImage[] upImg;
     private final PImage[] leftImg;
     private final PImage[] rightImg;
     private final String character;
-    private Boolean isDie = false;
     private int counter = 0;
     private int actionStatus = 0;
     private Direction preDirection = Direction.DIRECTION_DOWN;
@@ -92,4 +92,9 @@ public class Role extends DynamicObject{
         counter ++;
     }
 
+    protected abstract void enemyCollision();
+
+    public abstract int getLives();
+
+    public abstract void setLivesLoss();
 }

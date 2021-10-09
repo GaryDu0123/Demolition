@@ -3,7 +3,7 @@ package demolition.tile;
 import processing.core.PImage;
 
 public class EmptyTile extends Tile {
-    public final boolean isBlock = false;
+
     public static final String character = " ";
 
     public EmptyTile(int X, int Y, PImage image) {

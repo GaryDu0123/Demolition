@@ -1,10 +1,10 @@
 package demolition.battle;
 
 import demolition.core.DynamicObject;
-import demolition.core.DynamicRemovable;
 import demolition.core.Resource;
 import demolition.role.Enemy;
 import demolition.role.Player;
+import demolition.role.Role;
 import demolition.tile.*;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -12,28 +12,23 @@ import processing.core.PImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Explosion extends DynamicObject implements DynamicRemovable {
+public class Explosion extends DynamicObject{
     public PApplet app;
     private Tile[][] database;
-    private Player player;
-    private ArrayList<Enemy> enemies;
+    private ArrayList<Role> roleList = new ArrayList<>();
     private ArrayList<AnimationModule> animation = new ArrayList<>();
     private int counter = 0;
-    private boolean isDie = false;
+
 
     public Explosion(int x, int y, Tile[][] database, Player player, ArrayList<Enemy> enemies, PApplet app) {
         super(x, y);
         this.app = app;
         this.database = database;
-        this.player = player;
-        this.enemies = enemies;
+        roleList.add(player);
+        roleList.addAll(enemies);
         rangeDetection();
     }
 
-    @Override
-    public boolean isNeedRemove() {
-        return false;
-    }
 
     static class AnimationModule {
         public int x;
@@ -110,6 +105,14 @@ public class Explosion extends DynamicObject implements DynamicRemovable {
         deathCheck.add(new int[]{getX(), getY()});
         animation.add(new AnimationModule(getX(), getY(), Resource.explosionCenterImg)); // 居中图片
 
+        for (Role role : roleList) {
+            for (int[] location : deathCheck) {
+                if (role.getX() == location[0] && role.getY() == location[1]){
+                    role.setLivesLoss();
+                    break;
+                }
+            }
+        }
         for (int[] ints : deathCheck) {
             System.out.println(Arrays.toString(ints));
         }
@@ -123,7 +126,7 @@ public class Explosion extends DynamicObject implements DynamicRemovable {
 
     private void checkProcess(ArrayList<Tile> tile, ArrayList<int[]> deathCheck, PImage middle, PImage edge){
         if (tile.size() == 0) return;
-        if (tile.get(0).getCharacter().equals(EmptyTile.character)) {
+        if (tile.get(0).getCharacter().equals(EmptyTile.character) || tile.get(0).getCharacter().equals(GoalTile.character)) {
             switch (tile.get(1).getCharacter()) {
                 case EmptyTile.character:
                 case GoalTile.character: {
@@ -157,5 +160,7 @@ public class Explosion extends DynamicObject implements DynamicRemovable {
             animation.add(new AnimationModule(tile.get(0).getX(), tile.get(0).getY(), edge));
             database[tile.get(0).getY()][tile.get(0).getX()].die();
         }
+        // 减血 -1
+
     }
 }

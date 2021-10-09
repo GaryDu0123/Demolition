@@ -1,14 +1,17 @@
 package demolition.core;
 
+import demolition.UI.UI;
 import demolition.role.Enemy;
 import demolition.role.Player;
 import demolition.tile.*;
 import demolition.util.JSONReader;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Resource {
@@ -44,14 +47,20 @@ public class Resource {
     public static PImage brokenWell;
     public static PImage empty;
 
+    public static PFont pFont;
+
+    public static GoalTile goalTile;
     public static int lives;
     public static ArrayList<String> levelPathList;
+    public static ArrayList<Integer> timeList;
 
     private final JSONReader jsonReader = new JSONReader("config.json");// 初始化JSON库 影响各文件的路径 生命数,
 
     public static final Tile[][] mapDatabase = new Tile[13][15];
     public static Player player;
-    public static final ArrayList<Enemy> enemies = new ArrayList<>();
+    public static ArrayList<Enemy> enemies = new ArrayList<>();
+    public static int timer;
+    public static UI ui;
 
     public Resource(){
     }
@@ -130,13 +139,19 @@ public class Resource {
         brokenWell = app.loadImage("src/main/resources/broken/broken.png");
         empty = app.loadImage("src/main/resources/empty/empty.png");
 
+        pFont = app.createFont("src/main/resources/PressStart2P-Regular.ttf", 20);
 
         lives = jsonReader.getLives();
         levelPathList = jsonReader.getLevelPathList();
+        timeList = jsonReader.getTimeList();
     }
 
     public void mapStaticRecourseInitUpdate(int level, PApplet app) {
         int rowIndex = 0;
+        enemies = new ArrayList<>();
+        timer = timeList.get(level);
+        ui = new UI(app);
+
         try (Scanner fileReader = new Scanner(new File(Resource.levelPathList.get(level)))) {
             while (fileReader.hasNextLine()) {
                 String config = fileReader.nextLine();
@@ -155,6 +170,7 @@ public class Resource {
                         tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
                     } else if (c == 'G') {
                         tile = new GoalTile(columnIndex, rowIndex, Resource.goal);
+                        goalTile = (GoalTile) tile;
                     } else if (c == 'R') {
                         tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
                         enemies.add(new Enemy(columnIndex, rowIndex, Resource.redEnemyDownImg, Resource.redEnemyUpImg,
@@ -175,11 +191,13 @@ public class Resource {
                     columnIndex++;
                 }
                 rowIndex++;
+
             }
         } catch (FileNotFoundException e) {
             System.err.println("Config file not found");
             System.exit(-1);
         }
+        System.out.println(Arrays.deepToString(mapDatabase));
     }
     
 }

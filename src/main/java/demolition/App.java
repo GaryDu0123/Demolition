@@ -1,5 +1,7 @@
 package demolition;
 
+
+import demolition.UI.UI;
 import demolition.battle.Bomb;
 import demolition.battle.Explosion;
 import demolition.core.Resource;
@@ -13,8 +15,8 @@ import java.util.ArrayList;
 public class App extends PApplet {
     private final Resource resource = new Resource();
     private int level = 0; // 初步思路是根据关卡load, 关卡改变去调用update方法
-    private final ArrayList<Bomb> bombs = new ArrayList<>();
-    private final ArrayList<Explosion> explosions = new ArrayList<>();
+    private ArrayList<Bomb> bombs = new ArrayList<>();
+    private ArrayList<Explosion> explosions = new ArrayList<>();
     private static long frame = 0L;
     public static final int WIDTH = 480;
     public static final int HEIGHT = 480;
@@ -23,14 +25,17 @@ public class App extends PApplet {
     public App() {
     }
 
+    @Override
     public void settings() {
         size(WIDTH, HEIGHT);
     }
 
-
+    @Override
     public void setup() {
         frameRate(FPS); // 游戏刷新帧率
         resource.setup(this);
+        this.textFont(Resource.pFont);
+        this.fill(0);
         resource.mapStaticRecourseInitUpdate(level, this); // 第一次初始化数据库为第一个地图,后面只有level更新的时候才生效
     }
 
@@ -43,13 +48,19 @@ public class App extends PApplet {
         }
     }
 
-    private void remove(){
-
-    }
 
     @Override
     public void draw() {
         background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
+        if (Resource.goalTile.getX()== Resource.player.getX() && Resource.goalTile.getY() == Resource.player.getY()){
+            level ++;
+            resource.mapStaticRecourseInitUpdate(level, this);
+            bombs = new ArrayList<>();
+            explosions = new ArrayList<>();
+        }
+
+        Resource.ui.show();
+
         mapStaticGraphUpdate(); // 显示当前地图状态
         ArrayList<Bomb> bombRemoveList = new ArrayList<>();
         // Bomb part
@@ -58,7 +69,6 @@ public class App extends PApplet {
             if (removeObj != null) bombRemoveList.add(bomb);
         }
 
-        // todo remove移动
         for (Bomb bomb : bombRemoveList) {
             System.out.format("\33[0;32mBomb Message: %s removed\33[0m\n", Integer.toHexString(bomb.hashCode())); // todo debug message
             explosions.add(new Explosion(bomb.getX(), bomb.getY(), Resource.mapDatabase, Resource.player, Resource.enemies, this)); // 将爆炸交给爆炸模块处理
@@ -72,12 +82,12 @@ public class App extends PApplet {
             if (remove != null) explosionsRemoveList.add(remove);
         }
 
-        //todo remove移动
         for (Explosion explosion : explosionsRemoveList) {
             explosions.remove(explosion);
         }
 
         // 人物绘画(玩家和敌人)
+        Resource.enemies.removeIf(enemy -> enemy.getLives() <= 0);
         Resource.player.draw();
         for (Enemy enemy : Resource.enemies) {
             enemy.move(Direction.AUTO, Resource.mapDatabase); // Direction here doesn't matter

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class JSONReader {
     private final int lives;
     private final ArrayList<String> levelPathList = new ArrayList<>();
+    private final ArrayList<Integer> timeList = new ArrayList<>();
 
 
     public JSONReader(String name) {
@@ -26,6 +27,7 @@ public class JSONReader {
         JSONArray levels = (JSONArray) JSONObject.parse(stringBuilder.toString()).get("levels");
         for (int i = 0; i < levels.size(); i++) {
             levelPathList.add((String) ((JSONObject) levels.get(i)).get("path"));
+            timeList.add((Integer) ((JSONObject) levels.get(i)).get("time"));
         }
     }
 
@@ -35,5 +37,14 @@ public class JSONReader {
 
     public ArrayList<String> getLevelPathList() {
         return levelPathList;
+    }
+
+    public ArrayList<Integer> getTimeList() {
+        return timeList;
+    }
+
+    public static void main(String[] args) {
+        JSONReader jsonReader = new JSONReader("config.json");
+
     }
 }

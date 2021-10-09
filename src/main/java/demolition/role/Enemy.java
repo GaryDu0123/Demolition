@@ -1,7 +1,7 @@
 package demolition.role;
 
 
-import demolition.core.DynamicRemovable;
+import demolition.core.Resource;
 import demolition.enums.Direction;
 import demolition.tile.Tile;
 import processing.core.PApplet;
@@ -11,14 +11,34 @@ import java.util.Arrays;
 import java.util.Random;
 
 
-public class Enemy extends Role implements Movable, DynamicRemovable {
+public class Enemy extends Role implements Movable {
     private static final ArrayList<Direction> clockwiseDirection = new ArrayList<>(Arrays.asList(Direction.DIRECTION_UP,
             Direction.DIRECTION_RIGHT, Direction.DIRECTION_DOWN, Direction.DIRECTION_LEFT));
     private int counter = 0;
+    private int lives = 1;
 
     public Enemy(int X, int Y, PImage[] downImg, PImage[] upImg,
                  PImage[] leftImg, PImage[] rightImg, String character, PApplet app) {
         super(X, Y, downImg, upImg, leftImg, rightImg, character, app);
+    }
+
+    @Override
+    protected void enemyCollision() {
+        if (Resource.player.getX() == this.getX() && Resource.player.getY() == this.getY()){
+            Resource.player.setLivesLoss();
+//            System.out.println("processing" + Resource.player.getLives());
+        }
+    }
+
+    @Override
+    public int getLives() {
+        return lives;
+    }
+
+    @Override
+    public void setLivesLoss() {
+        lives--;
+        System.out.println(this.getLives());
     }
 
     @Override
@@ -71,22 +91,23 @@ public class Enemy extends Role implements Movable, DynamicRemovable {
         switch (nextMoveDirection) {
             case DIRECTION_UP:
                 setY(getY() - 1);
+                enemyCollision();
                 return true;
             case DIRECTION_DOWN:
                 setY(getY() + 1);
+                enemyCollision();
                 return true;
             case DIRECTION_LEFT:
                 setX(getX() - 1);
+                enemyCollision();
                 return true;
             case DIRECTION_RIGHT:
                 setX(getX() + 1);
+                enemyCollision();
                 return true;
         }
         return false;
     }
 
-    @Override
-    public boolean isNeedRemove() {
-        return false;
-    }
+
 }

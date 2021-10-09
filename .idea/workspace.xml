@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 hmmmmmm">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Removable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demolition/UI/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicRemovable.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Movable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
@@ -20,8 +18,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/explosionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/util/JSONReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/util/JSONReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.explosionTest" />
         <item itemvalue="Application.randomTest" />
         <item itemvalue="Application.moveTest" />
         <item itemvalue="Application.circleLinklist" />
-        <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +197,8 @@
       <workItem from="1633675603175" duration="70000" />
       <workItem from="1633682681922" duration="29758000" />
       <workItem from="1633719171569" duration="117000" />
-      <workItem from="1633752791069" duration="21319000" />
+      <workItem from="1633752791069" duration="30780000" />
+      <workItem from="1633787697802" duration="20065000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -237,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633719206528</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Hello Assignment2 hmmmmmm">
+      <created>1633777016731</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1633777016731</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +267,9 @@
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="GradleRunConfiguration">
-        <watch expression="getPreDirection()" />
+        <watch expression="Resource.enemies" />
+        <watch expression="Resource.player" />
+        <watch expression="Resource.player.getLives()" />
       </configuration>
     </watches-manager>
   </component>
