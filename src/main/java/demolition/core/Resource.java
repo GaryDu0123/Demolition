@@ -1,6 +1,7 @@
 package demolition.core;
 
 import demolition.UI.UI;
+import demolition.enums.GameStatus;
 import demolition.role.Enemy;
 import demolition.role.Player;
 import demolition.tile.*;
@@ -11,7 +12,6 @@ import processing.core.PImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Resource {
@@ -54,18 +54,20 @@ public class Resource {
     public static ArrayList<String> levelPathList;
     public static ArrayList<Integer> timeList;
 
-    private final JSONReader jsonReader = new JSONReader("config.json");// 初始化JSON库 影响各文件的路径 生命数,
+    private static final JSONReader jsonReader = new JSONReader("config.json");// 初始化JSON库 影响各文件的路径 生命数,
 
     public static final Tile[][] mapDatabase = new Tile[13][15];
     public static Player player;
     public static ArrayList<Enemy> enemies = new ArrayList<>();
     public static int timer;
-    public static UI ui;
+    public static UI UI;
+    public static GameStatus gameStatus = null;
+
 
     public Resource(){
     }
     
-    public void setup(PApplet app){
+    public static void setup(PApplet app){
         // load 图片区
 
         // 玩家
@@ -146,12 +148,12 @@ public class Resource {
         timeList = jsonReader.getTimeList();
     }
 
-    public void mapStaticRecourseInitUpdate(int level, PApplet app) {
-        int rowIndex = 0;
+    public static void mapStaticRecourseInitUpdate(int level, PApplet app) {
         enemies = new ArrayList<>();
         timer = timeList.get(level);
-        ui = new UI(app);
+        UI = new UI(app);
 
+        int rowIndex = 0;
         try (Scanner fileReader = new Scanner(new File(Resource.levelPathList.get(level)))) {
             while (fileReader.hasNextLine()) {
                 String config = fileReader.nextLine();
@@ -197,7 +199,20 @@ public class Resource {
             System.err.println("Config file not found");
             System.exit(-1);
         }
-        System.out.println(Arrays.deepToString(mapDatabase));
     }
-    
+
+//    public static void mapStaticRecourseInitUpdate(GameStatus status) {
+//        gameStatus = status;
+//        switch (gameStatus){
+//            case WIN:
+//
+//
+//                break;
+//            case LOSE:
+//
+//
+//                break;
+//        }
+//
+//    }
 }

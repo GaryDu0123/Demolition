@@ -1,11 +1,11 @@
 package demolition;
 
 
-import demolition.UI.UI;
 import demolition.battle.Bomb;
 import demolition.battle.Explosion;
 import demolition.core.Resource;
 import demolition.enums.Direction;
+import demolition.enums.GameStatus;
 import demolition.role.Enemy;
 import demolition.tile.*;
 import processing.core.PApplet;
@@ -13,11 +13,9 @@ import java.util.ArrayList;
 
 
 public class App extends PApplet {
-    private final Resource resource = new Resource();
     private int level = 0; // 初步思路是根据关卡load, 关卡改变去调用update方法
     private ArrayList<Bomb> bombs = new ArrayList<>();
     private ArrayList<Explosion> explosions = new ArrayList<>();
-    private static long frame = 0L;
     public static final int WIDTH = 480;
     public static final int HEIGHT = 480;
     public static final int FPS = 60;
@@ -33,10 +31,10 @@ public class App extends PApplet {
     @Override
     public void setup() {
         frameRate(FPS); // 游戏刷新帧率
-        resource.setup(this);
+        Resource.setup(this);
         this.textFont(Resource.pFont);
         this.fill(0);
-        resource.mapStaticRecourseInitUpdate(level, this); // 第一次初始化数据库为第一个地图,后面只有level更新的时候才生效
+        Resource.mapStaticRecourseInitUpdate(level, this); // 第一次初始化数据库为第一个地图,后面只有level更新的时候才生效
     }
 
 
@@ -48,20 +46,41 @@ public class App extends PApplet {
         }
     }
 
+    private void gameStatusChanger(){
+        if (Resource.goalTile.getX()== Resource.player.getX() && Resource.goalTile.getY() == Resource.player.getY()){
+            level ++;
+            if (level < Resource.levelPathList.size()) {
+                Resource.mapStaticRecourseInitUpdate(level, this);
+                bombs = new ArrayList<>();
+                explosions = new ArrayList<>();
+            } else {
+                background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
+                Resource.gameStatus = GameStatus.WIN;
+                this.text("YOU WIN", 160, 240);
+            }
+        } else if (Resource.timer <= 0 || Resource.player.getLives() <= 0){
+            background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
+            Resource.gameStatus = GameStatus.LOSE;
+            this.text("YOU LOSE", 160, 240);
+        }
+    }
 
     @Override
     public void draw() {
+
         background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
-        if (Resource.goalTile.getX()== Resource.player.getX() && Resource.goalTile.getY() == Resource.player.getY()){
-            level ++;
-            resource.mapStaticRecourseInitUpdate(level, this);
-            bombs = new ArrayList<>();
-            explosions = new ArrayList<>();
+
+        gameStatusChanger();
+
+        if (Resource.gameStatus != null){
+            return;
         }
 
-        Resource.ui.show();
+        Resource.UI.show();
 
         mapStaticGraphUpdate(); // 显示当前地图状态
+
+
         ArrayList<Bomb> bombRemoveList = new ArrayList<>();
         // Bomb part
         for (Bomb bomb : bombs) {
@@ -93,7 +112,8 @@ public class App extends PApplet {
             enemy.move(Direction.AUTO, Resource.mapDatabase); // Direction here doesn't matter
             enemy.draw();
         }
-        frame++;
+
+
     }
 
     boolean actionComplete = true; // 为了只执行一次动作
@@ -101,7 +121,7 @@ public class App extends PApplet {
     @Override
     public void keyPressed() {
         // 玩家移动处理部分
-        if (actionComplete) {
+        if (actionComplete && Resource.gameStatus == null) {
             boolean status;
             switch (keyCode) {
                 case LEFT: // Constant define in processing.core.PConstants
