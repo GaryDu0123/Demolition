@@ -200,19 +200,4 @@ public class Resource {
             System.exit(-1);
         }
     }
-
-//    public static void mapStaticRecourseInitUpdate(GameStatus status) {
-//        gameStatus = status;
-//        switch (gameStatus){
-//            case WIN:
-//
-//
-//                break;
-//            case LOSE:
-//
-//
-//                break;
-//        }
-//
-//    }
 }
