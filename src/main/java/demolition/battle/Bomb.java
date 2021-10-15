@@ -4,28 +4,17 @@ import demolition.core.DynamicObject;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-import java.util.ArrayList;
 
-public class Bomb extends DynamicObject {
+public class Bomb extends DynamicObject{
     public PApplet app;
     private final PImage[] images;
     private int counter = 0;
     private int actionStatus = 0;
-    private final ArrayList<Bomb> bombsList;
 
-    public Bomb(int x, int y, PImage[] images, PApplet app, ArrayList<Bomb> bombsList) {
+    public Bomb(int x, int y, PImage[] images, PApplet app) {
         super(x, y);
         this.images = images;
         this.app = app;
-        this.bombsList = bombsList;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-
-    public int getCounter() {
-        return counter;
     }
 
     public PApplet getApp() {

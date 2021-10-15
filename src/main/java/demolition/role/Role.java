@@ -1,10 +1,10 @@
 package demolition.role;
 
 import demolition.core.DynamicObject;
-import demolition.core.Resource;
 import demolition.enums.Direction;
 import processing.core.PApplet;
 import processing.core.PImage;
+import java.util.HashSet;
 
 public abstract class Role extends DynamicObject{
     public PApplet app;
@@ -16,7 +16,7 @@ public abstract class Role extends DynamicObject{
     private int counter = 0;
     private int actionStatus = 0;
     private Direction preDirection = Direction.DIRECTION_DOWN;
-
+    private final HashSet<Integer> explosionCounterSet = new HashSet<>();
 
     public Role(int X, int Y, PImage[] downImg, PImage[] upImg,
                 PImage[] leftImg, PImage[] rightImg, String character, PApplet app) {
@@ -27,6 +27,10 @@ public abstract class Role extends DynamicObject{
         this.rightImg = rightImg;
         this.character = character;
         this.app = app;
+    }
+
+    public HashSet<Integer> getExplosionCounterSet() {
+        return explosionCounterSet;
     }
 
     public PApplet getApp() {
@@ -63,7 +67,8 @@ public abstract class Role extends DynamicObject{
         return getY() * 32 - 16 + 64;
     }
 
-    public void draw(){
+    public Role draw(){
+        if (this.getLives() <= 0) return this;
         if (actionStatus == 4)
             actionStatus = 0;
         PImage[] image;
@@ -81,7 +86,7 @@ public abstract class Role extends DynamicObject{
                 image = rightImg;
                 break;
             default:
-                return;
+                return null;
         }
         getApp().image(image[actionStatus], getDisplayX(), getDisplayY());
 
@@ -90,6 +95,7 @@ public abstract class Role extends DynamicObject{
             counter = 0;
         }
         counter ++;
+        return null;
     }
 
     protected abstract void enemyCollision();

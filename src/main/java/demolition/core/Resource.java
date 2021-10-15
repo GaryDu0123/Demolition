@@ -12,7 +12,9 @@ import processing.core.PImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
+
 
 public class Resource {
     public static final PImage[] playerDownImg = new PImage[4];
@@ -58,11 +60,11 @@ public class Resource {
 
     public static final Tile[][] mapDatabase = new Tile[13][15];
     public static Player player;
-    public static ArrayList<Enemy> enemies = new ArrayList<>();
     public static int timer;
     public static UI UI;
     public static GameStatus gameStatus = null;
-
+    public static int currentLevel;
+    public static LinkedList<DynamicObject> dynamicObjects = new LinkedList<>();
 
     public Resource(){
     }
@@ -143,15 +145,18 @@ public class Resource {
 
         pFont = app.createFont("src/main/resources/PressStart2P-Regular.ttf", 20);
 
+        currentLevel = 1;
         lives = jsonReader.getLives();
         levelPathList = jsonReader.getLevelPathList();
         timeList = jsonReader.getTimeList();
     }
 
     public static void mapStaticRecourseInitUpdate(int level, PApplet app) {
-        enemies = new ArrayList<>();
+        currentLevel = level;
         timer = timeList.get(level);
         UI = new UI(app);
+        dynamicObjects = new LinkedList<>();
+
 
         int rowIndex = 0;
         try (Scanner fileReader = new Scanner(new File(Resource.levelPathList.get(level)))) {
@@ -175,16 +180,16 @@ public class Resource {
                         goalTile = (GoalTile) tile;
                     } else if (c == 'R') {
                         tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.redEnemyDownImg, Resource.redEnemyUpImg,
+                        dynamicObjects.add(new Enemy(columnIndex, rowIndex, Resource.redEnemyDownImg, Resource.redEnemyUpImg,
                                 Resource.redEnemyLeftImg, Resource.redEnemyRightImg, "R", app));
                     } else if (c == 'Y') {
                         tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
-                        enemies.add(new Enemy(columnIndex, rowIndex, Resource.yellowEnemyDownImg, Resource.yellowEnemyUpImg,
+                        dynamicObjects.add(new Enemy(columnIndex, rowIndex, Resource.yellowEnemyDownImg, Resource.yellowEnemyUpImg,
                                 Resource.yellowEnemyLeftImg, Resource.yellowEnemyRightImg, "Y", app));
                     } else if (c == 'P') {
                         tile = new EmptyTile(columnIndex, rowIndex, Resource.empty);
                         player = new Player(columnIndex, rowIndex, Resource.playerDownImg, Resource.playerUpImg,
-                                Resource.playerLeftImg, Resource.playerRightImg, "P", app, Resource.lives); // todo 下一步初始化玩家
+                                Resource.playerLeftImg, Resource.playerRightImg, "P", app); // todo 下一步初始化玩家
                     } else {
                         System.err.printf("Unknown type %c in config file\n", c);
                         System.exit(-1);
@@ -195,6 +200,7 @@ public class Resource {
                 rowIndex++;
 
             }
+            dynamicObjects.add(player);
         } catch (FileNotFoundException e) {
             System.err.println("Config file not found");
             System.exit(-1);

@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 hmmmmmm">
-      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/UI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/UI/UI.java" afterDir="false" />
+    <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 Complete">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Test/treeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,19 +109,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="circleLinklist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.circleLinklist" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="explosionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demolition.tile.explosionTest" />
       <module name="Demolition.main" />
@@ -154,13 +148,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="treeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test.treeTest" />
+      <module name="Demolition.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.treeTest" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.explosionTest" />
         <item itemvalue="Application.randomTest" />
         <item itemvalue="Application.moveTest" />
-        <item itemvalue="Application.circleLinklist" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +194,17 @@
       <workItem from="1633719171569" duration="117000" />
       <workItem from="1633752791069" duration="30780000" />
       <workItem from="1633787697802" duration="20082000" />
-      <workItem from="1633839039862" duration="4382000" />
+      <workItem from="1633839039862" duration="4571000" />
+      <workItem from="1633852584033" duration="6000" />
+      <workItem from="1633940297831" duration="3958000" />
+      <workItem from="1633944561852" duration="1139000" />
+      <workItem from="1633963423414" duration="74000" />
+      <workItem from="1633968913241" duration="36000" />
+      <workItem from="1633973000831" duration="2408000" />
+      <workItem from="1634028685803" duration="879000" />
+      <workItem from="1634099685954" duration="86000" />
+      <workItem from="1634102416646" duration="604000" />
+      <workItem from="1634308508935" duration="9013000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -245,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633844764244</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Hello Assignment2 Complete">
+      <created>1633845044205</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1633845044205</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +289,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hello Assignment2 hmmmmmm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hello Assignment2 hmmmmmm" />
+    <MESSAGE value="Hello Assignment2 Complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hello Assignment2 Complete" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

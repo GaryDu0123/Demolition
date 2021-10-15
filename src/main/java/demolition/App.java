@@ -3,6 +3,7 @@ package demolition;
 
 import demolition.battle.Bomb;
 import demolition.battle.Explosion;
+import demolition.core.DynamicObject;
 import demolition.core.Resource;
 import demolition.enums.Direction;
 import demolition.enums.GameStatus;
@@ -10,12 +11,12 @@ import demolition.role.Enemy;
 import demolition.tile.*;
 import processing.core.PApplet;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 
 public class App extends PApplet {
     private int level = 0; // 初步思路是根据关卡load, 关卡改变去调用update方法
-    private ArrayList<Bomb> bombs = new ArrayList<>();
-    private ArrayList<Explosion> explosions = new ArrayList<>();
     public static final int WIDTH = 480;
     public static final int HEIGHT = 480;
     public static final int FPS = 60;
@@ -46,19 +47,20 @@ public class App extends PApplet {
         }
     }
 
-    private void gameStatusChanger(){
-        if (Resource.goalTile.getX()== Resource.player.getX() && Resource.goalTile.getY() == Resource.player.getY()){
-            level ++;
+
+    private void gameStatusChanger() {
+        if (Resource.goalTile.getX() == Resource.player.getX() && Resource.goalTile.getY() == Resource.player.getY()) {
+            level++;
             if (level < Resource.levelPathList.size()) {
                 Resource.mapStaticRecourseInitUpdate(level, this);
-                bombs = new ArrayList<>();
-                explosions = new ArrayList<>();
+
+
             } else {
                 background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
                 Resource.gameStatus = GameStatus.WIN;
                 this.text("YOU WIN", 160, 240);
             }
-        } else if (Resource.timer <= 0 || Resource.player.getLives() <= 0){
+        } else if (Resource.timer <= 0 || Resource.player.getLives() <= 0) {
             background(239, 129, 0); // 设置背景色为橙色, 每次都要更新
             Resource.gameStatus = GameStatus.LOSE;
             this.text("YOU LOSE", 160, 240);
@@ -72,7 +74,7 @@ public class App extends PApplet {
 
         gameStatusChanger();
 
-        if (Resource.gameStatus != null){
+        if (Resource.gameStatus != null) {
             return;
         }
 
@@ -80,40 +82,26 @@ public class App extends PApplet {
 
         mapStaticGraphUpdate(); // 显示当前地图状态
 
+        ArrayList<DynamicObject> processList = new ArrayList<>();
+        Collections.sort(Resource.dynamicObjects);
+        Iterator<DynamicObject> iterator = Resource.dynamicObjects.iterator();
 
-        ArrayList<Bomb> bombRemoveList = new ArrayList<>();
-        // Bomb part
-        for (Bomb bomb : bombs) {
-            Bomb removeObj = bomb.draw();
-            if (removeObj != null) bombRemoveList.add(bomb);
+        while (iterator.hasNext()) {
+            DynamicObject object = iterator.next(); // todo
+
+            if (object instanceof Enemy)
+                ((Enemy) object).move(Direction.AUTO, Resource.mapDatabase);
+
+            DynamicObject rmObject = object.draw();
+            if (rmObject != null) {
+                if (rmObject instanceof Bomb) {
+                    processList.add(new Explosion(rmObject.getX(), rmObject.getY(),
+                            Resource.mapDatabase, Resource.player, Resource.dynamicObjects, this)); // 将爆炸交给爆炸模块处理
+                }
+                iterator.remove();
+            }
         }
-
-        for (Bomb bomb : bombRemoveList) {
-            System.out.format("\33[0;32mBomb Message: %s removed\33[0m\n", Integer.toHexString(bomb.hashCode())); // todo debug message
-            explosions.add(new Explosion(bomb.getX(), bomb.getY(), Resource.mapDatabase, Resource.player, Resource.enemies, this)); // 将爆炸交给爆炸模块处理
-            bombs.remove(bomb);
-        }
-
-        // Explosion part
-        ArrayList<Explosion> explosionsRemoveList = new ArrayList<>();
-        for (Explosion explosion : this.explosions) {
-            Explosion remove = explosion.draw();
-            if (remove != null) explosionsRemoveList.add(remove);
-        }
-
-        for (Explosion explosion : explosionsRemoveList) {
-            explosions.remove(explosion);
-        }
-
-        // 人物绘画(玩家和敌人)
-        Resource.enemies.removeIf(enemy -> enemy.getLives() <= 0);
-        Resource.player.draw();
-        for (Enemy enemy : Resource.enemies) {
-            enemy.move(Direction.AUTO, Resource.mapDatabase); // Direction here doesn't matter
-            enemy.draw();
-        }
-
-
+        Resource.dynamicObjects.addAll(processList);
     }
 
     boolean actionComplete = true; // 为了只执行一次动作
@@ -145,8 +133,8 @@ public class App extends PApplet {
                     System.err.println("Key Press DOWN " + status);
                     break;
                 case 32: // space
-                    Bomb bomb = new Bomb(Resource.player.getX(), Resource.player.getY(), Resource.bombImg, this, bombs);
-                    bombs.add(bomb);
+                    Bomb bomb = new Bomb(Resource.player.getX(), Resource.player.getY(), Resource.bombImg, this);
+                    Resource.dynamicObjects.add(bomb);
                     System.err.println("Key Press SPACE");
                     break;
             }

@@ -8,25 +8,31 @@ import demolition.role.Role;
 import demolition.tile.*;
 import processing.core.PApplet;
 import processing.core.PImage;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Explosion extends DynamicObject{
     public PApplet app;
-    private Tile[][] database;
-    private ArrayList<Role> roleList = new ArrayList<>();
-    private ArrayList<AnimationModule> animation = new ArrayList<>();
     private int counter = 0;
+    private final Tile[][] database;
+    private final ArrayList<Role> roleList = new ArrayList<>();
+    private final ArrayList<AnimationModule> animation = new ArrayList<>();
+    private final ArrayList<int[]> deathCheck = new ArrayList<>(); // todo 查找玩家和敌人的死亡点
+    private static int explosionCounter = 0;
+    private final int damagedCount;
 
 
-    public Explosion(int x, int y, Tile[][] database, Player player, ArrayList<Enemy> enemies, PApplet app) {
+    public Explosion(int x, int y, Tile[][] database, Player player, LinkedList<DynamicObject> enemies, PApplet app) {
         super(x, y);
         this.app = app;
         this.database = database;
         roleList.add(player);
-        roleList.addAll(enemies);
+        for (DynamicObject enemy : enemies) {
+            if (enemy instanceof Enemy)
+                roleList.add((Enemy)enemy);
+        }
         rangeDetection();
+        damagedCount = explosionCounter;
     }
 
 
@@ -64,6 +70,16 @@ public class Explosion extends DynamicObject{
         if (counter == 30){
             return this;
         }
+
+        for (Role role : roleList) {
+            for (int[] location : deathCheck) {
+                if (role.getX() == location[0] && role.getY() == location[1] && !role.getExplosionCounterSet().contains(damagedCount)){
+                    role.getExplosionCounterSet().add(damagedCount);
+                    role.setLivesLoss(); // todo 敌人只有一滴血的时候不算bug, 玩家也不算, 因为地图会重置
+                    break;
+                }
+            }
+        }
         for (AnimationModule animationModule : animation) {
             app.image(animationModule.image, animationModule.getDisplayX(), animationModule.getDisplayY());
         }
@@ -72,7 +88,6 @@ public class Explosion extends DynamicObject{
     }
 
     public void rangeDetection() {
-        ArrayList<int[]> deathCheck = new ArrayList<>(); // todo 查找玩家和敌人的死亡点
         ArrayList<Tile> tails = new ArrayList<>(2);
 
         for (int step = 1; step <= 2; step++) { // 1 2  向下移动
@@ -102,20 +117,9 @@ public class Explosion extends DynamicObject{
         }
         checkProcess(tails, deathCheck, Resource.explosionHorizontalImg, Resource.explosionEndLeftImg);
 
-        deathCheck.add(new int[]{getX(), getY()});
+        deathCheck.add(new int[]{getX(), getY(), damagedCount});
         animation.add(new AnimationModule(getX(), getY(), Resource.explosionCenterImg)); // 居中图片
-
-        for (Role role : roleList) {
-            for (int[] location : deathCheck) {
-                if (role.getX() == location[0] && role.getY() == location[1]){
-                    role.setLivesLoss();
-                    break;
-                }
-            }
-        }
-        for (int[] ints : deathCheck) {
-            System.out.println(Arrays.toString(ints));
-        }
+        explosionCounter++;
         /*
         todo
         1. 先查找爆炸范围, 变量一遍直到2格或者遇到阻碍, 实体和可破坏的分开考虑, 记录坐标点, 并修改数据库
@@ -133,8 +137,8 @@ public class Explosion extends DynamicObject{
                     animation.add(new AnimationModule(tile.get(0).getX(), tile.get(0).getY(), middle));
                     animation.add(new AnimationModule(tile.get(1).getX(), tile.get(1).getY(), edge));
                     // 位置点查找两格
-                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY()});
-                    deathCheck.add(new int[]{tile.get(1).getX(), tile.get(1).getY()});
+                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY(), damagedCount});
+                    deathCheck.add(new int[]{tile.get(1).getX(), tile.get(1).getY(), damagedCount});
                     // todo 死亡调用 搜索两格
                     break;
                 }
@@ -143,7 +147,7 @@ public class Explosion extends DynamicObject{
                     animation.add(new AnimationModule(tile.get(1).getX(), tile.get(1).getY(), edge));
                     database[tile.get(1).getY()][tile.get(1).getX()].die(); // 数据库中把该对象删除
                     //查找一格
-                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY()});
+                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY(), damagedCount});
                     // todo 死亡调用 搜索一格
                     break;
                 }
@@ -151,7 +155,7 @@ public class Explosion extends DynamicObject{
                     animation.add(new AnimationModule(tile.get(0).getX(), tile.get(0).getY(), edge));
 
                     // 查找一格
-                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY()});
+                    deathCheck.add(new int[]{tile.get(0).getX(), tile.get(0).getY(), damagedCount});
                     //todo 死亡调用, 搜索一格
                     break;
                 }
