@@ -5,15 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01c4160e-896f-43b3-b7c3-730cb2e7328f" name="Changes" comment="Hello Assignment2 Complete">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Test/treeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demolition/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demolition/BattleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demolition/JSONReaderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demolition/RoleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demolition/TailTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/level1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/level2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/level1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/JSONTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/changeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/circleLinklist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/moveTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/randomTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test/treeTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/UI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/UI/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/enums/GameStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/enums/GameStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Movable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/role/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/BrokenWall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/EmptyTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/GoalTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/SolidWall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demolition/util/JSONReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demolition/util/JSONReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/demolition/SampleTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +67,23 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Demolition" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Demolition" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Demolition" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Demolition" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -50,6 +96,7 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -65,6 +112,15 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/App.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/battle/Bomb.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/core/DynamicObject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/core/GameObject.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/battle/Explosion.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demolition/core/Resource.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.processing/core/3.3.7/8a0703d28af65ca863a36c7d2ba83773b1905b27/core-3.3.7-sources.jar!/processing/core/PApplet.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1z4VVQs9hYJkaZB2rtcp08nmnAI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -79,6 +135,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="junit.framework.TestCase" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -91,11 +151,23 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\USYD\INFO1113\Assignment2\Demolition\src\test\resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\USYD\INFO1113\Assignment2\Demolition" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="demolition.battle" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Gradle.Tests in 'demolition'">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demolition.App" />
       <module name="Demolition.main" />
@@ -109,65 +181,97 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="explosionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="demolition.tile.explosionTest" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="demolition.tile.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="AppTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;demolition.AppTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="moveTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.moveTest" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Demolition [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jacocoTestCoverageVerification" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="randomTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.randomTest" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Demolition [jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jacocoTestReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
-    <configuration name="treeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.treeTest" />
-      <module name="Demolition.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Tests in 'demolition'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;demolition.*&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.treeTest" />
+        <item itemvalue="Gradle.Tests in 'demolition'" />
+        <item itemvalue="Gradle.AppTest" />
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.explosionTest" />
-        <item itemvalue="Application.randomTest" />
-        <item itemvalue="Application.moveTest" />
+        <item itemvalue="Gradle.Demolition [jacocoTestCoverageVerification]" />
+        <item itemvalue="Gradle.Demolition [jacocoTestReport]" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +308,50 @@
       <workItem from="1634028685803" duration="879000" />
       <workItem from="1634099685954" duration="86000" />
       <workItem from="1634102416646" duration="604000" />
-      <workItem from="1634308508935" duration="9013000" />
+      <workItem from="1634308508935" duration="9230000" />
+      <workItem from="1634378056747" duration="181000" />
+      <workItem from="1634379055238" duration="1000" />
+      <workItem from="1634381452019" duration="613000" />
+      <workItem from="1634388423227" duration="21000" />
+      <workItem from="1634402392985" duration="6586000" />
+      <workItem from="1634440424454" duration="3458000" />
+      <workItem from="1634538656086" duration="4143000" />
+      <workItem from="1634554754907" duration="6574000" />
+      <workItem from="1634564874885" duration="723000" />
+      <workItem from="1634647183811" duration="44000" />
+      <workItem from="1634647430750" duration="1677000" />
+      <workItem from="1634664113701" duration="116000" />
+      <workItem from="1634666779791" duration="248000" />
+      <workItem from="1634669530802" duration="642000" />
+      <workItem from="1634699849558" duration="11000" />
+      <workItem from="1634701107043" duration="1079000" />
+      <workItem from="1634704295475" duration="53000" />
+      <workItem from="1634714213641" duration="137000" />
+      <workItem from="1634723766356" duration="379000" />
+      <workItem from="1634728912590" duration="18000" />
+      <workItem from="1634729197756" duration="87000" />
+      <workItem from="1634729332673" duration="94000" />
+      <workItem from="1634730015648" duration="16000" />
+      <workItem from="1634825191952" duration="1495000" />
+      <workItem from="1634836728848" duration="17000" />
+      <workItem from="1634896787782" duration="162000" />
+      <workItem from="1634916311437" duration="117000" />
+      <workItem from="1634985998771" duration="134000" />
+      <workItem from="1635065737980" duration="2601000" />
+      <workItem from="1635085668863" duration="17296000" />
+      <workItem from="1635134481965" duration="42000" />
+      <workItem from="1635142304022" duration="639000" />
+      <workItem from="1635168919363" duration="3684000" />
+      <workItem from="1635236998042" duration="8000" />
+      <workItem from="1635255308890" duration="17796000" />
+      <workItem from="1635311165919" duration="1738000" />
+      <workItem from="1635314421969" duration="234000" />
+      <workItem from="1635425844808" duration="182000" />
+      <workItem from="1635510117602" duration="2285000" />
+      <workItem from="1635573014104" duration="64000" />
+      <workItem from="1635587720934" duration="16000" />
+      <workItem from="1635673986655" duration="13794000" />
+      <workItem from="1635690066493" duration="1314000" />
     </task>
     <task id="LOCAL-00001" summary="Hello Assignment2 hmmmmmm">
       <created>1633429733118</created>
@@ -269,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633845044205</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Hello Assignment2 Complete">
+      <created>1634320465318</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1634320465318</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,11 +452,22 @@
         <watch expression="Resource.enemies" />
         <watch expression="Resource.player" />
         <watch expression="Resource.player.getLives()" />
+        <watch expression="Resource.dynamicObjects" />
       </configuration>
     </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Demolition$App.ic" NAME="App Coverage Results" MODIFIED="1635675471754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>demolition.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Demolition$Tests_in__demolition_.ic" NAME="Tests in 'demolition' Coverage Results" MODIFIED="1635689142628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Demolition$SampleTest_simpleTest.ic" NAME="SampleTest.simpleTest Coverage Results" MODIFIED="1634539389781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Demolition$SampleTest.ic" NAME="SampleTest Coverage Results" MODIFIED="1634540283042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Demolition$RoleTest_enemyTest.ic" NAME="RoleTest.enemyTest Coverage Results" MODIFIED="1635093779432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Demolition$TailTest.ic" NAME="TailTest Coverage Results" MODIFIED="1635088491573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

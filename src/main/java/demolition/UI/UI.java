@@ -1,23 +1,36 @@
 package demolition.UI;
 
 import demolition.core.Resource;
-import demolition.enums.GameStatus;
 import processing.core.PApplet;
 
+/**
+ * Used to display the game UI part, life, time.
+ */
 public class UI {
+    /**
+     * Counter, counting one minute
+     */
     private int counter = 0;
-    private final PApplet app;
-    GameStatus gameStatus;
 
+    /**
+     * PApplet object
+     *
+     * @see PApplet
+     */
+    private final PApplet app;
+
+    /**
+     * Display the game UI, time, statement, etc.
+     *
+     * @param app PApplet Object
+     */
     public UI(PApplet app) {
         this.app = app;
     }
 
-    public UI(PApplet app, GameStatus gameStatus) {
-        this.gameStatus = gameStatus;
-        this.app = app;
-    }
-
+    /**
+     * Display the game UI, and modify the game timer internally.
+     */
     public void show() {
         if (counter == 60) {
             counter = 0;
